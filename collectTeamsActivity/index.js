@@ -20,8 +20,6 @@ const main = async function (context, timer) {
 
   const augmentedTeamsData = teamsData.map(reportItem => Object.assign(reportItem, (groupedUserData[reportItem.userPrincipalName] && groupedUserData[reportItem.userPrincipalName][0]) || {}))
 
-  console.log(augmentedTeamsData.slice(0, 5))
-
   // Write user data to Blob
   const userBlobId = await storage.uploadBlob('user-json', 'user_data.json', JSON.stringify({ value: usersData }))
 
