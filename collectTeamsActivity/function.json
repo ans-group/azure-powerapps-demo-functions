@@ -1,0 +1,18 @@
+{
+  "bindings": [
+    {
+      "name": "timer",
+      "type": "timerTrigger",
+      "direction": "in",
+      "schedule": "0 0 0 * * *"
+    },
+    {
+      "type": "blob",
+      "name": "outputBlob",
+      "path": "teams/data.json",
+      "connection": "powerappshdemosae_STORAGE",
+      "direction": "out"
+    }
+  ],
+  "disabled": false
+}
