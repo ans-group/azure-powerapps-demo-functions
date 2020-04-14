@@ -7,6 +7,10 @@ const STORAGE = require('./modules/ms-storage')
 // Create the module objects
 const storage = new STORAGE()
 
+// set the faker js locale and seed
+faker.locale = 'en_GB'
+faker.seed(1337)
+
 const main = async function (context, timer) {
   // Export AD Users
   const usersData = new Array(2000).fill(0).map(_ => {
