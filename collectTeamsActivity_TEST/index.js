@@ -9,17 +9,21 @@ const storage = new STORAGE()
 
 const main = async function (context, timer) {
   // Export AD Users
-  const usersData = new Array(2000).fill(0).map(_ => ({
-    displayName: faker.name.findName(),
-    givenName: faker.name.firstName(),
-    id: uuid(),
-    jobTitle: faker.name.jobTitle(),
-    mail: faker.internet.email(),
-    mobilePhone: faker.phone.phoneNumber(),
-    officeLocation: 'Head Office',
-    surname: faker.name.lastName(),
-    userPrincipalName: faker.internet.email()
-  }))
+  const usersData = new Array(2000).fill(0).map(_ => {
+    const name = `${faker.name.firstName()} ${faker.name.lastName()}`
+    const email = `${name.replace(/\s/g, '.')}@${faker.internet.domainName()}`
+    return {
+      displayName: name,
+      givenName: name.split(' ')[0],
+      id: uuid(),
+      jobTitle: faker.name.jobTitle(),
+      mail: email,
+      mobilePhone: faker.phone.phoneNumber(),
+      officeLocation: 'Head Office',
+      surname: name.split(' ')[name.split(' ').length - 1],
+      userPrincipalName: email
+    }
+  })
 
   // Get Teams Activity Report Location
   const teamsData = usersData.map((user, i) => ({
